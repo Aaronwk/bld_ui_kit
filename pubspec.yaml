@@ -1,7 +1,7 @@
 name: bld_ui_kit
-description: A new Flutter package project.
+description: A framework for the underlying UI space.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Aaronwk/bld_ui_kit.git
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
