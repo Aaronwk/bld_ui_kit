@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BText extends StatelessWidget {
+class BLDText extends StatelessWidget {
 
   /// 要显示的文本
   final String data;
@@ -71,11 +71,10 @@ class BText extends StatelessWidget {
   final Locale? locale;
 
   /// 点击当前文本，携带当前text
-  /// 注* 设置onTap会截断上层响应链
   final ValueChanged<String>? onTap;
 
 
-   BText(
+   BLDText(
     this.data, {
     this.textColor,
     this.backgroundColor,
@@ -130,7 +129,16 @@ class BText extends StatelessWidget {
           decorationStyle: decorationStyle,
         );
 
-    return GestureDetector(
+    return onTap == null ? Text(
+      _text,
+      key: key,
+      style: _customStyle,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      overflow: overflow,
+      maxLines: maxLines,
+      textDirection: textDirection,
+    ) : GestureDetector(
       child: Text(
         _text,
         key: key,
@@ -140,7 +148,6 @@ class BText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         textDirection: textDirection,
-        // textWidthBasis: isExpand == true ? TextWidthBasis.longestLine : TextWidthBasis.parent,
       ),
       onTap: () => onTap?.call(data),
     );

@@ -31,10 +31,12 @@ class _ButtonStyle {
 
 abstract class _Button extends StatefulWidget {
   final VoidCallback? onPressed;
+  final bool preventViolentClicks;
 
   const _Button({
     Key? key,
-    required this.onPressed,
+    this.onPressed,
+    this.preventViolentClicks = true,
   }) : super(key: key);
 
   @protected
@@ -50,6 +52,8 @@ abstract class _Button extends StatefulWidget {
 }
 
 class __ButtonState extends State<_Button> {
+  DateTime? _clickTime;
+
   @override
   void initState() {
     super.initState();
@@ -70,7 +74,22 @@ class __ButtonState extends State<_Button> {
         BorderRadius.circular(_buttonStyle.radius ?? 0);
 
     final Widget result = InkWell(
-      onTap: widget.onPressed,
+      onTap: () {
+        if (widget.preventViolentClicks) {
+          DateTime _nowTime = DateTime.now();
+          var _lastClickTime = _clickTime;
+          var diff = 0;
+          if (_lastClickTime != null) {
+            diff = _nowTime.difference(_lastClickTime).inMilliseconds;
+          }
+          if (diff > 999 || diff == 0) {
+            widget.onPressed?.call();
+            _clickTime = _nowTime;
+          }
+        } else {
+          widget.onPressed?.call();
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           image: _buttonStyle.backgroundImage,
@@ -90,13 +109,13 @@ class __ButtonState extends State<_Button> {
   }
 }
 
-class BButton extends _Button {
+class BLDButton extends _Button {
   String? text;
   Widget? image;
-  Color? backgroundColor, borderColor, textColor;
+  Color? backgroundColor, borderColor, textColor, disableBackgroundColor;
   double? borderWidth = 0.3;
   double? radius;
-  EdgeInsetsGeometry? padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 7);
+  EdgeInsetsGeometry padding;
   BorderRadiusGeometry? borderRadius;
   double? fontSize;
   FontWeight? fontWeight;
@@ -114,36 +133,42 @@ class BButton extends _Button {
   /// 有效
   bool isExpand;
 
+  bool enable;
+
   DecorationImage? backgroundImage;
 
-  BButton({
+  BLDButton({
     Key? key,
     this.text,
     this.image,
-    required VoidCallback? onPressed,
+    VoidCallback? onPressed,
+    bool preventViolentClicks = true,
     this.textColor,
     this.backgroundColor,
+    this.disableBackgroundColor = const Color(0xffD9D9D9),
     this.borderColor,
     this.borderWidth,
     this.radius,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
     this.borderRadius,
     this.fontSize,
     this.fontWeight,
     this.layoutStyle = ButtonLayoutStyle.landscapeLeft,
     this.widgetSpace = 5.0,
     this.isExpand = false,
+    this.enable = true,
     this.backgroundImage,
   }) : super(
           key: key,
-          onPressed: onPressed,
+          onPressed: enable ? onPressed : null,
+          preventViolentClicks: preventViolentClicks,
         );
 
   @override
   _ButtonStyle styleOf(BuildContext context) {
     // TODO: implement styleOf
     return _ButtonStyle(
-      backgroundColor: backgroundColor,
+      backgroundColor: enable ? backgroundColor : disableBackgroundColor,
       borderColor: borderColor,
       borderWidth: borderWidth,
       radius: radius,

@@ -72,14 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     var _body = [
-      BText('hello word'),
-      BText('textColor', textColor: Colors.red),
-      BText('backgroundColor', backgroundColor: Colors.red),
-      BText('wordSpacing test', wordSpacing: 40),
-      BText('你好wordSpacing test测试', wordSpacing: 40),
-      BText('letterSpacing', letterSpacing: 10),
-      BText('字间隔 letterSpacing ', letterSpacing: 10),
-      BText('字间隔 letterSpacing', letterSpacing: -3),
+      BLDText('hello word'),
+      BLDText('textColor', textColor: Colors.red),
+      BLDText('backgroundColor', backgroundColor: Colors.red),
+      BLDText('wordSpacing test', wordSpacing: 40),
+      BLDText('你好wordSpacing test测试', wordSpacing: 40),
+      BLDText('letterSpacing', letterSpacing: 10),
+      BLDText('字间隔 letterSpacing ', letterSpacing: 10),
+      BLDText('字间隔 letterSpacing', letterSpacing: -3),
       Row(
         children: [
           Container(
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Container(
             color: Colors.green,
-            child: BText(
+            child: BLDText(
               '丨丨丨丨丨',
               fontSize: 34.67,
             ),
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       Container(
         color: Colors.purpleAccent,
-        child: BText(
+        child: BLDText(
           '文本文本文本文本文本文本文本文本文本文本本',
           textAlign: TextAlign.center,
           onTap: (text) {
@@ -113,22 +113,22 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 50,
           color: Colors.green,
           alignment: Alignment.center,
-          child: BButton(
-              text: 'BTextButton',
+          child: BLDButton(
+              text: 'BLDTextButton',
               padding: EdgeInsets.all(10),
               textColor: Colors.red,
               borderColor: Colors.orange,
               backgroundColor: Colors.yellow,
               radius: 5,
               onPressed: () {
-                print('BTextButton -> 点击事件');
+                print('BLDTextButton -> 点击事件');
               })),
       Container(
         width: 300,
         height: 50,
         color: Colors.blueAccent,
         alignment: Alignment.center,
-        child: BButton(
+        child: BLDButton(
             text: '按钮标题',
             image: Icon(Icons.ac_unit, size: 20),
             padding: EdgeInsets.all(10),
@@ -137,7 +137,12 @@ class _MyHomePageState extends State<MyHomePage> {
             isExpand: false,
             layoutStyle: ButtonLayoutStyle.landscapeLeft,
             widgetSpace: 10,
-            onPressed: () {}),
+            onPressed: () {
+              showBLDCustomDialog(context, customStyle: (style){
+                style.titleColor = Colors.blue;
+                return style;
+              });
+            }),
       )
     ];
 
