@@ -1,6 +1,6 @@
 name: bld_ui_kit
 description: A framework for the underlying UI space.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Aaronwk/bld_ui_kit.git
 
 environment:
