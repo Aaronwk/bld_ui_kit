@@ -1,5 +1,6 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 typedef CustomStyle = BLDDialogCustomStyle Function(
     BLDDialogCustomStyle customStyle);
@@ -156,7 +157,7 @@ class _BLDCustomDialogState extends State<BLDCustomDialog> {
                     if (!widget.hiddenCancel)
                       Expanded(
                           child: widget.cancelBuilder?.call(context) ??
-                              _Button(
+                              _button(
                                 text: widget.cancel,
                                 backgroundColor: _style.cancelBackgroundColor,
                                 gradient: _style.cancelGradient,
@@ -176,7 +177,7 @@ class _BLDCustomDialogState extends State<BLDCustomDialog> {
                       SizedBox(width: _style.buttonSpace),
                     Expanded(
                         child: widget.confirmBuilder?.call(context) ??
-                            _Button(
+                            _button(
                               text: widget.confirm,
                               backgroundColor: _style.confirmBackgroundColor,
                               gradient: _style.confirmGradient,
@@ -212,39 +213,18 @@ class _BLDCustomDialogState extends State<BLDCustomDialog> {
       ),
     );
   }
-}
 
-class _Button extends StatelessWidget {
-  _Button({
-    Key? key,
-    required this.text,
-    this.backgroundColor,
-    this.gradient,
-    this.borderRadius,
-    this.border,
-    this.textColor,
-    this.fontSize,
-    this.fontWeight,
-    this.fontStyle,
-    this.onTap,
-    this.padding,
-  }) : super(key: key);
-
-  String text;
-  Color? backgroundColor;
-  Gradient? gradient;
-  BorderRadiusGeometry? borderRadius;
-  BoxBorder? border;
-  Color? textColor;
-  double? fontSize;
-  FontWeight? fontWeight;
-  FontStyle? fontStyle;
-  GestureTapCallback? onTap;
-  EdgeInsetsGeometry? padding;
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
+  Widget _button({required String text,
+  Color? backgroundColor,
+  Gradient? gradient,
+  BorderRadiusGeometry? borderRadius,
+  BoxBorder? border,
+  Color? textColor,
+  double? fontSize,
+  FontWeight? fontWeight,
+  FontStyle? fontStyle,
+  GestureTapCallback? onTap,
+  EdgeInsetsGeometry? padding,}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -252,7 +232,7 @@ class _Button extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color:
-              gradient == null ? backgroundColor ?? Colors.transparent : null,
+          gradient == null ? backgroundColor ?? Colors.transparent : null,
           gradient: gradient,
           borderRadius: borderRadius,
           border: border,

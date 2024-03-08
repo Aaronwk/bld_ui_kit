@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+
+
+import 'package:flutter/cupertino.dart';
+
+import 'package:bld_ui_kit/src/bld_util.dart';
 
 class BLDText extends StatelessWidget {
 
@@ -106,6 +110,8 @@ class BLDText extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
 
+
+
     var _text = data;
 
     if (fixAutoLines == true) {
@@ -114,19 +120,19 @@ class BLDText extends StatelessWidget {
 
     TextStyle _customStyle = style ??
         TextStyle(
-          color: textColor,
+          color: textColor ?? BLDUtil().style?.color,
           backgroundColor: backgroundColor,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          locale: locale,
-          textBaseline: textBaseline,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
+          fontSize: fontSize ?? BLDUtil().style?.fontSize,
+          fontWeight: fontWeight ?? BLDUtil().style?.fontWeight,
+          fontStyle: fontStyle ?? BLDUtil().style?.fontStyle,
+          letterSpacing: letterSpacing ?? BLDUtil().style?.letterSpacing,
+          wordSpacing: wordSpacing ?? BLDUtil().style?.wordSpacing,
+          height: height ?? BLDUtil().style?.height,
+          locale: locale ?? BLDUtil().style?.locale,
+          textBaseline: textBaseline ?? BLDUtil().style?.textBaseline,
+          decoration: decoration ?? BLDUtil().style?.decoration,
+          decorationColor: decorationColor ?? BLDUtil().style?.decorationColor,
+          decorationStyle: decorationStyle ?? BLDUtil().style?.decorationStyle,
         );
 
     return onTap == null ? Text(
