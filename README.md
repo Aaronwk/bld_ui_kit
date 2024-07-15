@@ -20,10 +20,27 @@ This is a simple encapsulation library of the base UI space, which is easy to us
 
 ## Usage
 
+### 初始化
+```dart
+Widget build(BuildContext context) {
+  return BLD(
+      style: TextStyle(
+        color: Colors.deepPurple,
+      ),
+      builder: () => MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ));
+}
+```
 
 ### 文本(Text)
 ```dart
-BText('text', textColor:Colors.white)
+BLDText('text', textColor:Colors.white)
 ```
 
 ### 按钮(Button)

@@ -277,7 +277,7 @@ class BLDDialogCustomStyle {
   FontStyle? contentFontStyle;
   TextAlign textAlign = TextAlign.center;
 
-  Border cancelBorder = Border.all(color: Color(0xffF85959), width: 0.33);
+  Border cancelBorder = Border.all(color: Color(0xff262626), width: 0.33);
   Border? confirmBorder;
 
   Color? cancelBackgroundColor;

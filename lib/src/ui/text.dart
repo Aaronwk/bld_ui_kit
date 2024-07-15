@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:bld_ui_kit/src/bld_util.dart';
+import 'package:flutter/material.dart';
 
 class BLDText extends StatelessWidget {
 
@@ -109,7 +110,6 @@ class BLDText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
 
 
     var _text = data;

@@ -53,6 +53,23 @@ class BLDTextField extends StatefulWidget {
     this.readOnly = false,
     this.onChanged,
     this.onSubmitted,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.maxLines,
+    this.minLines,
+    this.expands = false,
+    this.scrollPadding = const EdgeInsets.all(13.0),
+    this.textAlignVertical,
+    this.textDirection,
+    this.autofocus = false,
+    this.obscuringCharacter = '•',
+    this.autocorrect = true,
+    this.enableSuggestions = true,
+    this.decoration,
+    this.onTap,
+    this.cursorHeight,
+    this.cursorRadius,
+    this.cursorWidth = 2.0,
   }) : super(key: key);
 
   /// 若为空，在其他功能将不会生效，仅支持文本输入功能
@@ -163,6 +180,43 @@ class BLDTextField extends StatefulWidget {
   /// return 按键操作
   final ValueChanged<String>? onSubmitted;
 
+  /// 用于键盘的操作按钮类型.
+  /// 默认为 [TextInputAction.newline]
+  final TextInputAction? textInputAction;
+
+  /// 编辑完成
+  final VoidCallback? onEditingComplete;
+
+  final int? maxLines;
+
+  final int? minLines;
+
+  final bool expands;
+
+  final EdgeInsets scrollPadding;
+
+  final TextAlignVertical? textAlignVertical;
+
+  final TextDirection? textDirection;
+
+  final bool autofocus;
+
+  final String obscuringCharacter;
+
+  final bool autocorrect;
+
+  final bool enableSuggestions;
+
+  final InputDecoration? decoration;
+
+  GestureTapCallback? onTap;
+
+  final double cursorWidth;
+
+  final double? cursorHeight;
+
+  final Radius? cursorRadius;
+
   @override
   _BLDTextFieldState createState() {
     return _BLDTextFieldState();
@@ -254,22 +308,44 @@ class _BLDTextFieldState extends State<BLDTextField> {
                 )),
       child: Row(
         children: [
+      // final TextAlignVertical? textAlignVertical;
+      // final TextDirection? textDirection;
+      // final bool autofocus;
+      // final String obscuringCharacter;
+      // final bool autocorrect;
+      // final bool enableSuggestions;
           Expanded(
               child: TextField(
+                onTap: widget.onTap,
             controller: widget.controller,
             focusNode: widget.focusNode,
             enabled: widget.enabled,
             inputFormatters: widget.inputFormatters,
             obscureText: widget.obscureText,
             cursorColor: widget.cursorColor,
+            cursorHeight: widget.cursorHeight,
+            cursorWidth: widget.cursorWidth,
+            cursorRadius: widget.cursorRadius,
             textAlign: widget.textAlign,
             maxLength: widget.maxLength,
-            style: _customStyle,
             keyboardType: widget.keyboardType,
             readOnly: widget.readOnly,
             onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
-            decoration: InputDecoration(
+            textInputAction: widget.textInputAction,
+            onEditingComplete: widget.onEditingComplete,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            expands: widget.expands,
+            scrollPadding: widget.scrollPadding,
+            textAlignVertical: widget.textAlignVertical,
+            textDirection: widget.textDirection,
+            autofocus: widget.autofocus,
+            obscuringCharacter: widget.obscuringCharacter,
+            autocorrect: widget.autocorrect,
+            enableSuggestions: widget.enableSuggestions,
+            style: _customStyle,
+            decoration: widget.decoration ?? InputDecoration(
                 counterText: '',
                 border: InputBorder.none,
                 hintText: widget.hintText ?? '请输入',
